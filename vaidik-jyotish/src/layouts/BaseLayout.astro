@@ -1,0 +1,19 @@
+---
+const { title = 'Jyotish Darshan' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Personal Vedic Astrology, Vastu and Palmistry consultations." />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body><slot /></body>
+</html>
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap');
+  :root { --ink:#18213d; --night:#101936; --paper:#fcfaf5; --gold:#c7913e; --mist:#edf0f6; --line:#dedbd1; }
+  * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; background:var(--paper); color:var(--ink); font-family:"DM Sans","Noto Serif Devanagari",sans-serif; line-height:1.6; } a { color:inherit; text-decoration:none; } h1,h2,h3 { font-family:"Playfair Display","Noto Serif Devanagari",serif; line-height:1.12; } .wrap { width:min(1120px, calc(100% - 40px)); margin:auto; }
+</style>

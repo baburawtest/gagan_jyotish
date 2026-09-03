@@ -1,0 +1,691 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`${site.name} | ${site.tagline}`}>
+  <!-- Navigation Header -->
+  <header class="navbarwrap">
+    <div class="top wrap">
+      <a class="brand" href="/">
+        <img src="/images/click-jyotish-logo.jpg" alt="Click Jyotish Logo" class="logo-img" />
+        <div class="brand-titles">
+          <span class="brand-name">{site.name}</span>
+          <span class="brand-sub">{site.subtitle}</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#insights">Insights</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <button class="lang-btn" aria-label="Toggle language">हिंदी</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <!-- Matrix Dot Grid Overlay -->
+      <div class="dot-grid-pattern" aria-hidden="true"></div>
+
+      <div class="wrap hero-container">
+        <!-- Hero Content Left -->
+        <div class="hero-content">
+          <p class="hero-eyebrow">VEDIC WISDOM FOR MODERN LIFE</p>
+          <h1 class="hero-heading">
+            Find clarity.<br />
+            Move forward<br />
+            with confidence.
+          </h1>
+          <p class="hero-lead">
+            Personal guidance in Vedic Astrology, Vastu and Palmistry with {site.astrologer}—offered with care, confidentiality and practical perspective.
+          </p>
+
+          <div class="hero-cta-group">
+            <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noreferrer">
+              Book 15 minutes · {site.pricing.quickCall}
+            </a>
+            <a class="btn btn-outline" href="#services">
+              Explore services
+            </a>
+          </div>
+
+          <p class="hero-subtext">
+            15-minute call · {site.pricing.quickCall} · Online consultation
+          </p>
+        </div>
+
+        <!-- Hero Cosmic Graphic Right -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="cosmic-orbit-system">
+            <!-- Concentric Orbit Rings -->
+            <div class="orbit-ring ring-outer"></div>
+            <div class="orbit-ring ring-mid"></div>
+            <div class="orbit-ring ring-inner"></div>
+
+            <!-- Central Sun / Om Glow -->
+            <div class="central-sun">
+              <span class="om-symbol">ॐ</span>
+            </div>
+
+            <!-- Orbiting Planets -->
+            <div class="planet planet-gold"></div>
+            <div class="planet planet-blue"></div>
+            <div class="planet planet-white"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services-section">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow-text">OUR OFFERINGS</p>
+          <h2>Personalized Guidance & Consultations</h2>
+          <p class="section-desc">Grounded in traditional Vedic texts, delivered with modern clarity.</p>
+        </div>
+
+        <div class="services-grid">
+          {site.services.map((srv) => (
+            <div class="service-card">
+              <div class="service-icon">{srv.icon}</div>
+              <h3>{srv.title}</h3>
+              <p>{srv.desc}</p>
+              <a href={site.whatsappUrl} target="_blank" rel="noreferrer" class="service-link">
+                Book Consultation →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- About Astrologer Section -->
+    <section id="about" class="section about-section">
+      <div class="wrap about-grid">
+        <div class="about-image-wrapper">
+          <img src="/images/deepak-maheshwari.png" alt="Deepak Maheshwari - Click Jyotish" class="about-img" />
+          <div class="about-badge">
+            <span>Deepak Maheshwari</span>
+            <small>Vedic Astrologer & Vastu Practitioner</small>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <p class="eyebrow-text">MEET THE ASTROLOGER</p>
+          <h2>Clear, Compassionate & Actionable Advice</h2>
+          <p>
+            Astrology is not about fear or rigid determinism. It is a lens of self-awareness and timing, helping you understand your inherent strengths, challenge cycles, and upcoming opportunities.
+          </p>
+          <p>
+            With years of study in Janam Kundli analysis, Vastu principles, and Palmistry, Deepak Maheshwari provides confidential, direct, and practical consultations focused on empowering your decisions.
+          </p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-num">100%</span>
+              <span class="stat-lbl">Confidential & Direct</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">15 Min</span>
+              <span class="stat-lbl">Focused Online Calls</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insights / Articles Section -->
+    <section id="insights" class="section insights-section">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow-text">READING & INSIGHTS</p>
+          <h2>Articles & Panchang Reflections</h2>
+        </div>
+
+        <div class="insights-grid">
+          {site.insights.map((article) => (
+            <div class="insight-card">
+              <span class="insight-date">{article.date}</span>
+              <h3>{article.title}</h3>
+              <p>{article.summary}</p>
+              <a href={article.link} class="insight-link">Read full article →</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Booking Section -->
+    <section id="contact" class="section contact-section">
+      <div class="wrap contact-box">
+        <h2>Ready for personal clarity?</h2>
+        <p>Book a 15-minute focused online consultation for ₹600.</p>
+        <a class="btn btn-gold btn-lg" href={site.whatsappUrl} target="_blank" rel="noreferrer">
+          Connect on WhatsApp to Book →
+        </a>
+        <p class="contact-note">Share your birth date, exact time, and birth place after booking confirmation.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer-content">
+      <div class="footer-brand">
+        <span class="footer-title">{site.name}</span>
+        <p>Vedic Astrology, Vastu & Palmistry by Deepak Maheshwari</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="/blog/guru-purnima-2026">Guru Purnima 2026</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© {new Date().getFullYear()} Click Jyotish. All rights reserved.</p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  /* Header Nav Styling */
+  .navbarwrap {
+    background: #fcfaf5;
+    border-bottom: 1px solid #dedbd1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .top {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #c7913e;
+  }
+  .brand-titles {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-name {
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #18213d;
+    line-height: 1.1;
+  }
+  .brand-sub {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #c7913e;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #18213d;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover {
+    color: #c7913e;
+  }
+  .lang-btn {
+    background: transparent;
+    border: 1px solid #dedbd1;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    color: #18213d;
+    transition: all 0.2s ease;
+  }
+  .lang-btn:hover {
+    border-color: #c7913e;
+    color: #c7913e;
+  }
+
+  /* Hero Section Styling */
+  .hero-section {
+    background: #101936;
+    color: #ffffff;
+    position: relative;
+    padding: 90px 0 110px;
+    overflow: hidden;
+  }
+  .dot-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    color: #94a3b8;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .hero-heading {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(44px, 5.5vw, 68px);
+    line-height: 1.08;
+    font-weight: 600;
+    margin: 0 0 24px;
+    color: #ffffff;
+  }
+  .hero-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    max-width: 540px;
+    margin-bottom: 36px;
+  }
+  .hero-cta-group {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 26px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .btn-gold {
+    background: #c7913e;
+    color: #101936;
+  }
+  .btn-gold:hover {
+    background: #dba44e;
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+  .btn-outline:hover {
+    border-color: #c7913e;
+    color: #c7913e;
+  }
+  .hero-subtext {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  /* Cosmic Orbit Visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cosmic-orbit-system {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .ring-outer {
+    width: 320px;
+    height: 320px;
+  }
+  .ring-mid {
+    width: 240px;
+    height: 240px;
+    border-color: rgba(199, 145, 62, 0.25);
+  }
+  .ring-inner {
+    width: 160px;
+    height: 160px;
+  }
+  .central-sun {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #d99a38 0%, #b87c2a 100%);
+    box-shadow: 0 0 35px rgba(217, 154, 56, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+  .om-symbol {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: 38px;
+    color: #101936;
+    font-weight: 700;
+  }
+  .planet {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .planet-gold {
+    width: 14px;
+    height: 14px;
+    background: #eab308;
+    top: 55px;
+    left: 70px;
+    box-shadow: 0 0 10px #eab308;
+  }
+  .planet-blue {
+    width: 12px;
+    height: 12px;
+    background: #38bdf8;
+    bottom: 75px;
+    right: 55px;
+    box-shadow: 0 0 10px #38bdf8;
+  }
+  .planet-white {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    top: 130px;
+    right: 15px;
+  }
+
+  /* General Section Styles */
+  .section {
+    padding: 90px 0;
+  }
+  .eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #c7913e;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .section-header {
+    margin-bottom: 54px;
+  }
+  .section-header h2 {
+    font-size: 36px;
+    color: #18213d;
+    margin: 0 0 12px;
+  }
+  .section-desc {
+    font-size: 17px;
+    color: #64748b;
+    margin: 0;
+  }
+
+  /* Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+  }
+  .service-card {
+    background: #ffffff;
+    border: 1px solid #dedbd1;
+    border-radius: 8px;
+    padding: 32px 26px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  }
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .service-card h3 {
+    font-size: 22px;
+    color: #18213d;
+    margin: 0 0 12px;
+  }
+  .service-card p {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .service-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: #c7913e;
+    text-decoration: none;
+  }
+
+  /* About Section */
+  .about-section {
+    background: #edf0f6;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-image-wrapper {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    border: 1px solid #dedbd1;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    background: #101936;
+    color: #ffffff;
+    padding: 16px 24px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  .about-badge span {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #c7913e;
+  }
+  .about-badge small {
+    font-size: 12px;
+    color: #cbd5e1;
+  }
+  .about-content h2 {
+    font-size: 34px;
+    color: #18213d;
+    margin: 0 0 20px;
+  }
+  .about-content p {
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .about-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 32px;
+  }
+  .stat-num {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c7913e;
+  }
+  .stat-lbl {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  /* Insights Section */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .insight-card {
+    background: #ffffff;
+    border: 1px solid #dedbd1;
+    border-radius: 8px;
+    padding: 30px;
+  }
+  .insight-date {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #c7913e;
+    font-weight: 700;
+  }
+  .insight-card h3 {
+    font-size: 22px;
+    color: #18213d;
+    margin: 10px 0 12px;
+  }
+  .insight-card p {
+    font-size: 15px;
+    color: #475569;
+    margin-bottom: 20px;
+  }
+  .insight-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: #c7913e;
+  }
+
+  /* Contact Section */
+  .contact-section {
+    background: #101936;
+    color: #ffffff;
+    text-align: center;
+  }
+  .contact-box h2 {
+    font-size: 38px;
+    color: #ffffff;
+    margin: 0 0 16px;
+  }
+  .contact-box p {
+    font-size: 18px;
+    color: #cbd5e1;
+    margin-bottom: 32px;
+  }
+  .btn-lg {
+    padding: 16px 36px;
+    font-size: 18px;
+  }
+  .contact-note {
+    font-size: 13px !important;
+    color: #94a3b8 !important;
+    margin-top: 24px !important;
+  }
+
+  /* Footer */
+  .site-footer {
+    background: #0b1126;
+    color: #94a3b8;
+    padding: 60px 0 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-title {
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    color: #cbd5e1;
+    font-size: 14px;
+  }
+  .footer-links a:hover {
+    color: #c7913e;
+  }
+  .footer-bottom {
+    padding-top: 24px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-lead {
+      margin: 0 auto 36px;
+    }
+    .hero-cta-group {
+      justify-content: center;
+    }
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
