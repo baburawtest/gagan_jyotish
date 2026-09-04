@@ -1,0 +1,735 @@
+---
+import { site } from '../data/site';
+
+const consultationTypes = [
+  { id: 'kundali', name: 'Vedic Kundali & Dasha Analysis (15 Min - ₹600)', price: '₹600', icon: '✨' },
+  { id: 'career', name: 'Career, Job Change & Business Timing', price: '₹600', icon: '💼' },
+  { id: 'marriage', name: 'Kundali Milan & Relationship Harmony', price: '₹600', icon: '💍' },
+  { id: 'vastu', name: 'Home & Workplace Vastu Shastra', price: 'Custom', icon: '🏡' },
+  { id: 'palmistry', name: 'Palmistry & Hand Analysis (Hastarekha)', price: '₹600', icon: '✋' },
+  { id: 'muhurat', name: 'Shubh Muhurat Selection (Griha Pravesh / Marriage)', price: '₹600', icon: '🗓️' }
+];
+---
+
+<section id="book" class="section booking-section">
+  <div class="wrap">
+    <div class="booking-card-container">
+      <!-- Left Column: Trust & Astrologer Info -->
+      <div class="booking-sidebar">
+        <div class="sidebar-header">
+          <span class="eyebrow-text-light">DIRECT CONSULTATION · प्रत्यक्ष परामर्श</span>
+          <h2>Book Your 1-on-1 Guidance</h2>
+          <p class="sidebar-lead">
+            Speak directly with Deepak Maheshwari. Every session is personal, strictly confidential, and centered around actionable Vedic remedies.
+          </p>
+        </div>
+
+        <div class="practitioner-mini-card">
+          <img src="/images/deepak-maheshwari.png" alt="Deepak Maheshwari" class="mini-avatar" />
+          <div>
+            <strong>Deepak Maheshwari</strong>
+            <span>Vedic Astrologer & Vastu Consultant</span>
+            <small>📍 {site.city}, India</small>
+          </div>
+        </div>
+
+        <div class="trust-perks">
+          <div class="perk-item">
+            <span class="p-icon">🔒</span>
+            <div>
+              <strong>100% Private & Confidential</strong>
+              <p>Your birth details and personal questions remain strictly protected.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="p-icon">⏱️</span>
+            <div>
+              <strong>Focused 15-Minute Calls · {site.pricing.quickCall}</strong>
+              <p>No generic computer reports. Direct, live conversation tailored to your query.</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="p-icon">⚡</span>
+            <div>
+              <strong>Instant WhatsApp Confirmation</strong>
+              <p>Get immediate confirmation and calendar slot over WhatsApp.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-contact-info">
+          <span>Need immediate assistance?</span>
+          <a href={`tel:+${site.phone}`} class="phone-link">📞 +{site.phone}</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Consultation Lead Form -->
+      <div class="booking-form-wrapper">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>Share Your Birth & Consultation Details</h3>
+            <p>Accurate birth details ensure precise Janam Kundli and Dasha calculations.</p>
+          </div>
+
+          <form id="consultation-form" class="astro-lead-form">
+            <!-- Step 1: Personal Contact Info -->
+            <div class="form-group-grid">
+              <div class="input-field">
+                <label for="lead-name">Full Name (पूरा नाम) <span class="req">*</span></label>
+                <input
+                  type="text"
+                  id="lead-name"
+                  name="name"
+                  required
+                  placeholder="e.g. Rahul Sharma"
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="input-field">
+                <label for="lead-phone">WhatsApp Number (व्हाट्सएप नंबर) <span class="req">*</span></label>
+                <input
+                  type="tel"
+                  id="lead-phone"
+                  name="phone"
+                  required
+                  placeholder="e.g. 9876543210 (with country code)"
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+
+            <div class="input-field">
+              <label for="lead-email">Email Address (ईमेल) <span class="req">*</span></label>
+              <input
+                type="email"
+                id="lead-email"
+                name="email"
+                required
+                placeholder="e.g. rahul.sharma@gmail.com"
+                autocomplete="email"
+              />
+            </div>
+
+            <!-- Step 2: Birth Details for Vedic Kundali -->
+            <div class="form-subheading">
+              <span>VEDIC BIRTH DETAILS (जन्म विवरण)</span>
+            </div>
+
+            <div class="form-group-grid three-col">
+              <div class="input-field">
+                <label for="lead-dob">Date of Birth (जन्म तिथि) <span class="req">*</span></label>
+                <input
+                  type="date"
+                  id="lead-dob"
+                  name="dob"
+                  required
+                />
+              </div>
+
+              <div class="input-field">
+                <label for="lead-tob">Time of Birth (जन्म समय)</label>
+                <input
+                  type="time"
+                  id="lead-tob"
+                  name="tob"
+                  placeholder="HH:MM"
+                />
+              </div>
+
+              <div class="input-field">
+                <label for="lead-pob">Place of Birth (जन्म स्थान) <span class="req">*</span></label>
+                <input
+                  type="text"
+                  id="lead-pob"
+                  name="pob"
+                  required
+                  placeholder="e.g. New Delhi, India"
+                />
+              </div>
+            </div>
+
+            <div class="checkbox-field">
+              <input type="checkbox" id="lead-tob-unknown" name="tobUnknown" />
+              <label for="lead-tob-unknown">I do not know my exact birth time (use Prashna Kundali / Palmistry)</label>
+            </div>
+
+            <!-- Step 3: Service Selection -->
+            <div class="form-subheading">
+              <span>SELECT CONSULTATION TYPE (परामर्श का प्रकार)</span>
+            </div>
+
+            <div class="input-field">
+              <label for="lead-service">Consultation Focus <span class="req">*</span></label>
+              <select id="lead-service" name="service" required>
+                {consultationTypes.map((t, idx) => (
+                  <option value={t.name} selected={idx === 0}>
+                    {t.icon} {t.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div class="form-group-grid">
+              <div class="input-field">
+                <label for="lead-language">Preferred Language (भाषा) <span class="req">*</span></label>
+                <select id="lead-language" name="language" required>
+                  <option value="Hindi" selected>Hindi (हिंदी)</option>
+                  <option value="English">English</option>
+                  <option value="Both">Bilingual (Hindi + English)</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label for="lead-slot">Preferred Consultation Time</label>
+                <select id="lead-slot" name="preferredSlot">
+                  <option value="Morning (10 AM - 1 PM)">Morning (10:00 AM - 01:00 PM)</option>
+                  <option value="Afternoon (02 PM - 05 PM)">Afternoon (02:00 PM - 05:00 PM)</option>
+                  <option value="Evening (06 PM - 09 PM)" selected>Evening (06:00 PM - 09:00 PM)</option>
+                  <option value="Earliest Available Slot">Earliest Available Slot</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Step 4: Specific Question -->
+            <div class="input-field">
+              <label for="lead-question">What specific question or life concern would you like clarity on?</label>
+              <textarea
+                id="lead-question"
+                name="question"
+                rows="3"
+                placeholder="e.g., Job promotion timing, health of spouse, business partnership, best gemstone, or Vastu remedy..."
+              ></textarea>
+            </div>
+
+            <!-- Submission CTA -->
+            <div class="form-submit-container">
+              <button type="submit" id="submit-lead-btn" class="btn btn-gold btn-block">
+                <span>Book 15-Minute Consultation ({site.pricing.quickCall}) →</span>
+              </button>
+              <p class="submit-disclaimer">
+                🔒 By submitting, your details will be prepared for direct WhatsApp confirmation with Deepak Ji. No spam guaranteed.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Confirmation Modal -->
+  <div id="booking-success-modal" class="booking-modal" aria-hidden="true" role="dialog">
+    <div class="modal-overlay"></div>
+    <div class="modal-card">
+      <div class="modal-icon">✅</div>
+      <h3>Consultation Request Prepared!</h3>
+      <p class="modal-msg">
+        Thank you <strong id="modal-client-name"></strong>! Your Vedic consultation request has been recorded.
+      </p>
+
+      <div class="modal-summary-box">
+        <div class="ms-row">
+          <span>Service:</span>
+          <strong id="modal-service-name"></strong>
+        </div>
+        <div class="ms-row">
+          <span>Consultation Fee:</span>
+          <strong>{site.pricing.quickCall} (15 Min Call)</strong>
+        </div>
+        <div class="ms-row">
+          <span>Birth Details:</span>
+          <span id="modal-birth-info"></span>
+        </div>
+      </div>
+
+      <div class="modal-cta-buttons">
+        <a id="modal-wa-btn" href="#" target="_blank" rel="noreferrer" class="btn btn-gold btn-block">
+          Open WhatsApp to Confirm Slot with Deepak Ji 💬
+        </a>
+        <button type="button" id="close-modal-btn" class="btn btn-outline btn-block">
+          Done & Close
+        </button>
+      </div>
+
+      <p class="modal-note">
+        After opening WhatsApp, simply send the pre-written message to lock in your preferred session time.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initBookingForm() {
+    const form = document.getElementById('consultation-form') as HTMLFormElement;
+    const modal = document.getElementById('booking-success-modal') as HTMLElement;
+    const closeModalBtn = document.getElementById('close-modal-btn') as HTMLButtonElement;
+    const submitBtn = document.getElementById('submit-lead-btn') as HTMLButtonElement;
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Processing your request... ⏳</span>';
+      }
+
+      const formData = new FormData(form);
+      const name = formData.get('name')?.toString().trim() || 'Client';
+      const phone = formData.get('phone')?.toString().trim() || '';
+      const email = formData.get('email')?.toString().trim() || '';
+      const dob = formData.get('dob')?.toString() || '';
+      const tob = formData.get('tob')?.toString() || 'Not specified';
+      const pob = formData.get('pob')?.toString().trim() || '';
+      const tobUnknown = formData.get('tobUnknown') ? 'Yes (Unknown TOB)' : 'No';
+      const service = formData.get('service')?.toString() || 'Vedic Astrology Consultation';
+      const language = formData.get('language')?.toString() || 'Hindi';
+      const preferredSlot = formData.get('preferredSlot')?.toString() || 'Evening';
+      const question = formData.get('question')?.toString().trim() || 'General Kundali Reading';
+
+      const leadPayload = {
+        timestamp: new Date().toISOString(),
+        name,
+        phone,
+        email,
+        dob,
+        tob: tobUnknown === 'Yes (Unknown TOB)' ? 'Unknown (Prashna/Palmistry)' : tob,
+        pob,
+        service,
+        language,
+        preferredSlot,
+        question,
+        source: 'Click Jyotish Website'
+      };
+
+      // 1. Save locally in browser cache
+      try {
+        const existingLeads = JSON.parse(localStorage.getItem('clickjyotish_leads') || '[]');
+        existingLeads.unshift(leadPayload);
+        localStorage.setItem('clickjyotish_leads', JSON.stringify(existingLeads.slice(0, 50)));
+      } catch (err) {
+        console.warn('LocalStorage error:', err);
+      }
+
+      // 2. Dispatch to optional Webhook (Google Sheets / Automation API if configured)
+      const webhookUrl = 'https://script.google.com/macros/s/AKfycbz_SAMPLE_APP_SCRIPT/exec';
+      try {
+        if (!webhookUrl.includes('SAMPLE')) {
+          fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(leadPayload)
+          }).catch((err) => console.log('Webhook dispatched in background'));
+        }
+      } catch (err) {
+        console.log('Webhook optional dispatch');
+      }
+
+      // 3. Format WhatsApp Deep-Link Message
+      const waText = 
+`*Namaste Deepak Ji,* 🙏
+I would like to book a *${service}* (15 Min · ₹600).
+
+*Consultation Details:*
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Email:* ${email}
+• *Date of Birth:* ${dob}
+• *Time of Birth:* ${leadPayload.tob}
+• *Place of Birth:* ${pob}
+• *Language:* ${language}
+• *Preferred Slot:* ${preferredSlot}
+
+*My Query / Concern:*
+"${question}"
+
+_Please let me know the available time slot and payment details. Thank you._`;
+
+      const astrologerPhone = '917669655530';
+      const waUrl = `https://wa.me/${astrologerPhone}?text=${encodeURIComponent(waText)}`;
+
+      // 4. Update and show success modal
+      const modalName = document.getElementById('modal-client-name');
+      const modalService = document.getElementById('modal-service-name');
+      const modalBirth = document.getElementById('modal-birth-info');
+      const modalWaBtn = document.getElementById('modal-wa-btn') as HTMLAnchorElement;
+
+      if (modalName) modalName.textContent = name;
+      if (modalService) modalService.textContent = service;
+      if (modalBirth) modalBirth.textContent = `${dob} | ${leadPayload.tob} | ${pob}`;
+      if (modalWaBtn) modalWaBtn.href = waUrl;
+
+      if (modal) {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      // Automatically launch WhatsApp in new tab
+      window.open(waUrl, '_blank');
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Book 15-Minute Consultation (₹600) →</span>';
+      }
+    });
+
+    if (closeModalBtn && modal) {
+      closeModalBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        form.reset();
+      });
+    }
+
+    const overlay = modal?.querySelector('.modal-overlay');
+    if (overlay && modal) {
+      overlay.addEventListener('click', () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+      });
+    }
+  }
+
+  initBookingForm();
+  document.addEventListener('astro:page-load', initBookingForm);
+</script>
+
+<style>
+  .booking-section {
+    background: #101936;
+    color: #ffffff;
+    padding: 90px 0;
+  }
+  .booking-card-container {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* Sidebar Left */
+  .eyebrow-text-light {
+    font-size: 11.5px;
+    letter-spacing: 2px;
+    color: #c7913e;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .sidebar-header h2 {
+    font-size: 38px;
+    color: #ffffff;
+    margin: 0 0 16px;
+  }
+  .sidebar-lead {
+    font-size: 16.5px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* Practitioner Card */
+  .practitioner-mini-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .mini-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #c7913e;
+  }
+  .practitioner-mini-card strong {
+    display: block;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .practitioner-mini-card span {
+    font-size: 13px;
+    color: #cbd5e1;
+    display: block;
+  }
+  .practitioner-mini-card small {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  /* Trust Perks */
+  .trust-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .perk-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .perk-item .p-icon {
+    font-size: 20px;
+    background: rgba(199, 145, 62, 0.18);
+    border: 1px solid rgba(199, 145, 62, 0.35);
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .perk-item strong {
+    font-size: 14.5px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .perk-item p {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Direct Phone Link */
+  .sidebar-contact-info {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13.5px;
+    color: #94a3b8;
+  }
+  .phone-link {
+    display: block;
+    color: #c7913e;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 4px;
+    text-decoration: none;
+  }
+
+  /* Form Card Right */
+  .form-card {
+    background: #ffffff;
+    color: #18213d;
+    border-radius: 12px;
+    padding: 36px 32px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  }
+  .form-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #f0ece1;
+    padding-bottom: 16px;
+  }
+  .form-header h3 {
+    font-size: 24px;
+    color: #18213d;
+    margin: 0 0 6px;
+  }
+  .form-header p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+  }
+
+  /* Form Fields */
+  .astro-lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form-group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .form-group-grid.three-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .input-field label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: 0.3px;
+  }
+  .req {
+    color: #dc2626;
+  }
+  .input-field input,
+  .input-field select,
+  .input-field textarea {
+    padding: 11px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #18213d;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .input-field input:focus,
+  .input-field select:focus,
+  .input-field textarea:focus {
+    border-color: #c7913e;
+    box-shadow: 0 0 0 3px rgba(199, 145, 62, 0.15);
+  }
+  .form-subheading {
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px dashed #e2e8f0;
+  }
+  .form-subheading span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #a86f1e;
+  }
+  .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .checkbox-field input {
+    accent-color: #c7913e;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  .checkbox-field label {
+    font-size: 12.5px;
+    color: #64748b;
+    cursor: pointer;
+  }
+
+  /* Submit Button */
+  .form-submit-container {
+    margin-top: 10px;
+  }
+  .btn-block {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .submit-disclaimer {
+    font-size: 11.5px;
+    color: #94a3b8;
+    text-align: center;
+    margin: 10px 0 0;
+    line-height: 1.4;
+  }
+
+  /* Modal */
+  .booking-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .booking-modal.active {
+    display: flex;
+  }
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(16, 25, 54, 0.85);
+    backdrop-filter: blur(4px);
+  }
+  .modal-card {
+    position: relative;
+    background: #ffffff;
+    color: #18213d;
+    border-radius: 12px;
+    padding: 36px 30px;
+    width: min(520px, 100%);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    z-index: 2;
+    animation: modalPop 0.25s ease-out;
+  }
+  @keyframes modalPop {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-icon {
+    font-size: 44px;
+    margin-bottom: 12px;
+  }
+  .modal-card h3 {
+    font-size: 24px;
+    color: #18213d;
+    margin: 0 0 8px;
+  }
+  .modal-msg {
+    font-size: 14.5px;
+    color: #475569;
+    margin: 0 0 20px;
+  }
+  .modal-summary-box {
+    background: #faf8f2;
+    border: 1px solid #e8e3d5;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ms-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    gap: 12px;
+  }
+  .ms-row span {
+    color: #64748b;
+  }
+  .ms-row strong {
+    color: #18213d;
+    text-align: right;
+  }
+  .modal-cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .modal-note {
+    font-size: 12px;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .booking-card-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .form-group-grid,
+    .form-group-grid.three-col {
+      grid-template-columns: 1fr;
+    }
+    .form-card {
+      padding: 24px 18px;
+    }
+  }
+</style>

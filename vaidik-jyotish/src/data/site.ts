@@ -1,11 +1,43 @@
 // EDIT THIS FILE to change the website's name, contact details and primary text.
 export const site = {
   name: 'Click Jyotish',
+  tagline: 'Vedic Wisdom for Modern Life',
+  subtitle: 'Vedic Astrology · Vastu · Palmistry',
+  astrologer: 'Deepak Maheshwari',
   practitioner: 'Deepak Maheshwari',
   phone: '917669655530', // WhatsApp number with country code; no + or spaces
   email: 'support@clickjyotish.in',
   city: 'New Delhi',
   bookingLink: 'https://cal.id/clickjyotish/15-minute-consultation',
+  whatsappUrl: 'https://wa.me/917669655530?text=Namaste%20Deepak%20Ji%2C%20I%20would%20like%20to%20book%20a%20consultation.',
+  pricing: {
+    quickCall: '₹600',
+  },
+  services: [
+    {
+      icon: '✨',
+      title: 'Vedic Astrology & Kundali Reading',
+      desc: 'In-depth analysis of your Janam Kundli, planetary dasha, career, health, finances and relationship timing.'
+    },
+    {
+      icon: '🏡',
+      title: 'Vastu Shastra Consultation',
+      desc: 'Harmonise your home, office, or commercial space with practical, non-destructive Vastu remedies.'
+    },
+    {
+      icon: '✋',
+      title: 'Palmistry (Hastarekha)',
+      desc: 'Understand your innate character, life line, fate line, potential health indications and natural strengths.'
+    }
+  ],
+  insights: [
+    {
+      date: 'FESTIVALS · 2026',
+      title: 'Guru Purnima: Date, Meaning & Practice',
+      summary: 'Why Guru Purnima matters, how Jupiter influences wisdom, and simple observances for spiritual growth.',
+      link: '/blog/guru-purnima-2026'
+    }
+  ]
 };
 
 export const content = {

@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
+import DailyRashifal from '../components/DailyRashifal.astro';
+import DailyPanchang from '../components/DailyPanchang.astro';
+import ConsultationForm from '../components/ConsultationForm.astro';
 ---
 
 <BaseLayout title={`${site.name} | ${site.tagline}`}>
@@ -16,13 +19,16 @@ import { site } from '../data/site';
       </a>
       <nav class="nav-links">
         <a href="#home">Home</a>
+        <a href="#rashifal">Daily Rashifal</a>
+        <a href="#panchang">Panchang & Muhurat</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
-        <a href="#insights">Insights</a>
-        <a href="#contact">Contact</a>
+        <a href="#book" class="nav-book-link">Book Consultation</a>
       </nav>
       <div class="nav-right">
-        <button class="lang-btn" aria-label="Toggle language">हिंदी</button>
+        <a href="#book" class="btn btn-gold btn-header-cta">
+          Book 15 Min · {site.pricing.quickCall}
+        </a>
       </div>
     </div>
   </header>
@@ -30,50 +36,62 @@ import { site } from '../data/site';
   <main>
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-      <!-- Matrix Dot Grid Overlay -->
       <div class="dot-grid-pattern" aria-hidden="true"></div>
 
       <div class="wrap hero-container">
-        <!-- Hero Content Left -->
+        <!-- Hero Left Content -->
         <div class="hero-content">
-          <p class="hero-eyebrow">VEDIC WISDOM FOR MODERN LIFE</p>
+          <div class="hero-trust-pill">
+            <span class="pulse-dot"></span>
+            <span>VERIFIED VEDIC ASTROLOGY & VASTU GUIDANCE</span>
+          </div>
+
           <h1 class="hero-heading">
             Find clarity.<br />
             Move forward<br />
             with confidence.
           </h1>
+
           <p class="hero-lead">
-            Personal guidance in Vedic Astrology, Vastu and Palmistry with {site.astrologer}—offered with care, confidentiality and practical perspective.
+            Personal guidance in Vedic Astrology, Vastu Shastra and Palmistry with {site.astrologer}—offered with sincere care, confidentiality and practical perspective.
           </p>
 
           <div class="hero-cta-group">
-            <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noreferrer">
-              Book 15 minutes · {site.pricing.quickCall}
+            <a class="btn btn-gold btn-hero" href="#book">
+              Book 15-Min Call · {site.pricing.quickCall}
             </a>
-            <a class="btn btn-outline" href="#services">
-              Explore services
+            <a class="btn btn-outline" href="#rashifal">
+              Check Daily Rashifal & Panchang ↓
             </a>
           </div>
 
-          <p class="hero-subtext">
-            15-minute call · {site.pricing.quickCall} · Online consultation
-          </p>
+          <div class="hero-badges-row">
+            <div class="h-badge-item">
+              <span class="hb-icon">🛡️</span>
+              <span>100% Confidential</span>
+            </div>
+            <div class="h-badge-item">
+              <span class="hb-icon">📞</span>
+              <span>1-on-1 Direct Call</span>
+            </div>
+            <div class="h-badge-item">
+              <span class="hb-icon">⚡</span>
+              <span>Practical Remedies</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Hero Cosmic Graphic Right -->
+        <!-- Hero Right Cosmic Graphic -->
         <div class="hero-visual" aria-hidden="true">
           <div class="cosmic-orbit-system">
-            <!-- Concentric Orbit Rings -->
             <div class="orbit-ring ring-outer"></div>
             <div class="orbit-ring ring-mid"></div>
             <div class="orbit-ring ring-inner"></div>
 
-            <!-- Central Sun / Om Glow -->
             <div class="central-sun">
               <span class="om-symbol">ॐ</span>
             </div>
 
-            <!-- Orbiting Planets -->
             <div class="planet planet-gold"></div>
             <div class="planet planet-blue"></div>
             <div class="planet planet-white"></div>
@@ -82,13 +100,19 @@ import { site } from '../data/site';
       </div>
     </section>
 
+    <!-- Daily Rashifal & Horoscope Component -->
+    <DailyRashifal />
+
+    <!-- Daily Panchang & Shubh Muhurat Component -->
+    <DailyPanchang />
+
     <!-- Services Section -->
     <section id="services" class="section services-section">
       <div class="wrap">
-        <div class="section-header">
-          <p class="eyebrow-text">OUR OFFERINGS</p>
-          <h2>Personalized Guidance & Consultations</h2>
-          <p class="section-desc">Grounded in traditional Vedic texts, delivered with modern clarity.</p>
+        <div class="section-header text-center">
+          <p class="eyebrow-text">OUR CONSULTATION DOMAINS</p>
+          <h2>Personalized Guidance & Remedies</h2>
+          <p class="section-desc">Grounded in classical Parashari & Jaimini Vedic texts, delivered with modern clarity.</p>
         </div>
 
         <div class="services-grid">
@@ -97,8 +121,8 @@ import { site } from '../data/site';
               <div class="service-icon">{srv.icon}</div>
               <h3>{srv.title}</h3>
               <p>{srv.desc}</p>
-              <a href={site.whatsappUrl} target="_blank" rel="noreferrer" class="service-link">
-                Book Consultation →
+              <a href="#book" class="service-link">
+                Book Consultation ({site.pricing.quickCall}) →
               </a>
             </div>
           ))}
@@ -106,7 +130,7 @@ import { site } from '../data/site';
       </div>
     </section>
 
-    <!-- About Astrologer Section -->
+    <!-- Meet The Astrologer Section -->
     <section id="about" class="section about-section">
       <div class="wrap about-grid">
         <div class="about-image-wrapper">
@@ -118,13 +142,13 @@ import { site } from '../data/site';
         </div>
 
         <div class="about-content">
-          <p class="eyebrow-text">MEET THE ASTROLOGER</p>
+          <p class="eyebrow-text">MEET THE PRACTITIONER</p>
           <h2>Clear, Compassionate & Actionable Advice</h2>
           <p>
-            Astrology is not about fear or rigid determinism. It is a lens of self-awareness and timing, helping you understand your inherent strengths, challenge cycles, and upcoming opportunities.
+            Astrology is not about fatalism or creating fear. It is a time-tested Vedic science of self-awareness and planetary timing, helping you understand your inherent potentials, challenge cycles (Dasha), and upcoming auspicious windows.
           </p>
           <p>
-            With years of study in Janam Kundli analysis, Vastu principles, and Palmistry, Deepak Maheshwari provides confidential, direct, and practical consultations focused on empowering your decisions.
+            With disciplined practice in Janam Kundli analysis, Vastu principles, and Palmistry, Deepak Maheshwari provides confidential, direct, and practical consultations focused on empowering your life decisions.
           </p>
           <div class="about-stats">
             <div class="stat-item">
@@ -133,19 +157,26 @@ import { site } from '../data/site';
             </div>
             <div class="stat-item">
               <span class="stat-num">15 Min</span>
-              <span class="stat-lbl">Focused Online Calls</span>
+              <span class="stat-lbl">Focused Online Calls ({site.pricing.quickCall})</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">Direct</span>
+              <span class="stat-lbl">WhatsApp Booking</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Consultation & Lead Booking Form Component -->
+    <ConsultationForm />
+
     <!-- Insights / Articles Section -->
     <section id="insights" class="section insights-section">
       <div class="wrap">
-        <div class="section-header">
+        <div class="section-header text-center">
           <p class="eyebrow-text">READING & INSIGHTS</p>
-          <h2>Articles & Panchang Reflections</h2>
+          <h2>Articles & Vedic Reflections</h2>
         </div>
 
         <div class="insights-grid">
@@ -160,19 +191,17 @@ import { site } from '../data/site';
         </div>
       </div>
     </section>
-
-    <!-- Contact & Booking Section -->
-    <section id="contact" class="section contact-section">
-      <div class="wrap contact-box">
-        <h2>Ready for personal clarity?</h2>
-        <p>Book a 15-minute focused online consultation for ₹600.</p>
-        <a class="btn btn-gold btn-lg" href={site.whatsappUrl} target="_blank" rel="noreferrer">
-          Connect on WhatsApp to Book →
-        </a>
-        <p class="contact-note">Share your birth date, exact time, and birth place after booking confirmation.</p>
-      </div>
-    </section>
   </main>
+
+  <!-- Sticky Floating Mobile Booking Bar -->
+  <div class="floating-mobile-bar" aria-label="Quick booking">
+    <a href="#book" class="f-btn f-book-btn">
+      <span>Book Consultation ({site.pricing.quickCall})</span>
+    </a>
+    <a href={site.whatsappUrl} target="_blank" rel="noreferrer" class="f-btn f-wa-btn" aria-label="Chat on WhatsApp">
+      <span>WhatsApp 💬</span>
+    </a>
+  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -180,22 +209,26 @@ import { site } from '../data/site';
       <div class="footer-brand">
         <span class="footer-title">{site.name}</span>
         <p>Vedic Astrology, Vastu & Palmistry by Deepak Maheshwari</p>
+        <p class="footer-loc">📍 {site.city}, India · Email: {site.email}</p>
       </div>
       <div class="footer-links">
         <a href="#home">Home</a>
+        <a href="#rashifal">Daily Rashifal</a>
+        <a href="#panchang">Panchang & Muhurat</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
+        <a href="#book">Book Consultation</a>
         <a href="/blog/guru-purnima-2026">Guru Purnima 2026</a>
       </div>
     </div>
     <div class="wrap footer-bottom">
-      <p>© {new Date().getFullYear()} Click Jyotish. All rights reserved.</p>
+      <p>© {new Date().getFullYear()} Click Jyotish. All rights reserved. Astrology is a spiritual guidance practice and is not a substitute for medical, legal, or financial professional advice.</p>
     </div>
   </footer>
 </BaseLayout>
 
 <style>
-  /* Header Nav Styling */
+  /* Header Nav */
   .navbarwrap {
     background: #fcfaf5;
     border-bottom: 1px solid #dedbd1;
@@ -220,7 +253,7 @@ import { site } from '../data/site';
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid #c7913e;
+    border: 1.5px solid #c7913e;
   }
   .brand-titles {
     display: flex;
@@ -242,10 +275,11 @@ import { site } from '../data/site';
   }
   .nav-links {
     display: flex;
-    gap: 28px;
+    gap: 24px;
+    align-items: center;
   }
   .nav-links a {
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 500;
     color: #18213d;
     transition: color 0.2s ease;
@@ -253,23 +287,16 @@ import { site } from '../data/site';
   .nav-links a:hover {
     color: #c7913e;
   }
-  .lang-btn {
-    background: transparent;
-    border: 1px solid #dedbd1;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 13px;
-    font-family: inherit;
-    cursor: pointer;
-    color: #18213d;
-    transition: all 0.2s ease;
+  .nav-book-link {
+    color: #c7913e !important;
+    font-weight: 700 !important;
   }
-  .lang-btn:hover {
-    border-color: #c7913e;
-    color: #c7913e;
+  .btn-header-cta {
+    padding: 10px 18px;
+    font-size: 13.5px;
   }
 
-  /* Hero Section Styling */
+  /* Hero Section */
   .hero-section {
     background: #101936;
     color: #ffffff;
@@ -293,46 +320,60 @@ import { site } from '../data/site';
     position: relative;
     z-index: 2;
   }
-  .hero-eyebrow {
-    font-size: 12px;
-    letter-spacing: 2.5px;
-    color: #94a3b8;
+  .hero-trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(199, 145, 62, 0.15);
+    border: 1px solid rgba(199, 145, 62, 0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
     font-weight: 700;
-    margin-bottom: 24px;
+    color: #e5b364;
+    margin-bottom: 20px;
+  }
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
   }
   .hero-heading {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(44px, 5.5vw, 68px);
-    line-height: 1.08;
+    font-size: clamp(40px, 5.2vw, 64px);
+    line-height: 1.1;
     font-weight: 600;
-    margin: 0 0 24px;
+    margin: 0 0 22px;
     color: #ffffff;
   }
   .hero-lead {
-    font-size: 18px;
+    font-size: 17.5px;
     line-height: 1.6;
     color: #cbd5e1;
     max-width: 540px;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
   .hero-cta-group {
     display: flex;
     gap: 16px;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
   }
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 14px 26px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
     text-decoration: none;
     transition: all 0.25s ease;
     cursor: pointer;
+    border: none;
   }
   .btn-gold {
     background: #c7913e;
@@ -340,21 +381,31 @@ import { site } from '../data/site';
   }
   .btn-gold:hover {
     background: #dba44e;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(199, 145, 62, 0.35);
   }
   .btn-outline {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
   }
   .btn-outline:hover {
     border-color: #c7913e;
     color: #c7913e;
   }
-  .hero-subtext {
+  .hero-badges-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .h-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 13px;
-    color: #94a3b8;
-    margin: 0;
+    color: #cbd5e1;
   }
 
   /* Cosmic Orbit Visual */
@@ -376,19 +427,9 @@ import { site } from '../data/site';
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
-  .ring-outer {
-    width: 320px;
-    height: 320px;
-  }
-  .ring-mid {
-    width: 240px;
-    height: 240px;
-    border-color: rgba(199, 145, 62, 0.25);
-  }
-  .ring-inner {
-    width: 160px;
-    height: 160px;
-  }
+  .ring-outer { width: 320px; height: 320px; }
+  .ring-mid { width: 240px; height: 240px; border-color: rgba(199, 145, 62, 0.25); }
+  .ring-inner { width: 160px; height: 160px; }
   .central-sun {
     width: 90px;
     height: 90px;
@@ -406,38 +447,14 @@ import { site } from '../data/site';
     color: #101936;
     font-weight: 700;
   }
-  .planet {
-    position: absolute;
-    border-radius: 50%;
-  }
-  .planet-gold {
-    width: 14px;
-    height: 14px;
-    background: #eab308;
-    top: 55px;
-    left: 70px;
-    box-shadow: 0 0 10px #eab308;
-  }
-  .planet-blue {
-    width: 12px;
-    height: 12px;
-    background: #38bdf8;
-    bottom: 75px;
-    right: 55px;
-    box-shadow: 0 0 10px #38bdf8;
-  }
-  .planet-white {
-    width: 8px;
-    height: 8px;
-    background: #ffffff;
-    top: 130px;
-    right: 15px;
-  }
+  .planet { position: absolute; border-radius: 50%; }
+  .planet-gold { width: 14px; height: 14px; background: #eab308; top: 55px; left: 70px; box-shadow: 0 0 10px #eab308; }
+  .planet-blue { width: 12px; height: 12px; background: #38bdf8; bottom: 75px; right: 55px; box-shadow: 0 0 10px #38bdf8; }
+  .planet-white { width: 8px; height: 8px; background: #ffffff; top: 130px; right: 15px; }
 
-  /* General Section Styles */
-  .section {
-    padding: 90px 0;
-  }
+  /* Sections */
+  .section { padding: 85px 0; }
+  .text-center { text-align: center; max-width: 680px; margin: 0 auto 40px; }
   .eyebrow-text {
     font-size: 11px;
     letter-spacing: 2px;
@@ -446,78 +463,42 @@ import { site } from '../data/site';
     margin-bottom: 12px;
     text-transform: uppercase;
   }
-  .section-header {
-    margin-bottom: 54px;
-  }
-  .section-header h2 {
-    font-size: 36px;
-    color: #18213d;
-    margin: 0 0 12px;
-  }
-  .section-desc {
-    font-size: 17px;
-    color: #64748b;
-    margin: 0;
-  }
+  .section-header h2 { font-size: 36px; color: #18213d; margin: 0 0 12px; }
+  .section-desc { font-size: 16px; color: #64748b; margin: 0; }
 
   /* Services Grid */
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 28px;
   }
   .service-card {
     background: #ffffff;
     border: 1px solid #dedbd1;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 32px 26px;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .service-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    border-color: #c7913e;
   }
-  .service-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
-  .service-card h3 {
-    font-size: 22px;
-    color: #18213d;
-    margin: 0 0 12px;
-  }
-  .service-card p {
-    font-size: 15px;
-    color: #475569;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-  .service-link {
-    font-size: 14px;
-    font-weight: 700;
-    color: #c7913e;
-    text-decoration: none;
-  }
+  .service-icon { font-size: 34px; margin-bottom: 16px; }
+  .service-card h3 { font-size: 21px; color: #18213d; margin: 0 0 12px; }
+  .service-card p { font-size: 14.5px; color: #475569; line-height: 1.6; margin-bottom: 20px; }
+  .service-link { font-size: 14px; font-weight: 700; color: #c7913e; text-decoration: none; }
 
   /* About Section */
-  .about-section {
-    background: #edf0f6;
-  }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .about-image-wrapper {
-    position: relative;
-  }
+  .about-section { background: #edf0f6; }
+  .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
+  .about-image-wrapper { position: relative; }
   .about-img {
     width: 100%;
     height: 440px;
     object-fit: cover;
     object-position: center top;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid #dedbd1;
   }
   .about-badge {
@@ -527,108 +508,58 @@ import { site } from '../data/site';
     background: #101936;
     color: #ffffff;
     padding: 16px 24px;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   }
-  .about-badge span {
-    font-family: "Playfair Display", serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: #c7913e;
-  }
-  .about-badge small {
-    font-size: 12px;
-    color: #cbd5e1;
-  }
-  .about-content h2 {
-    font-size: 34px;
-    color: #18213d;
-    margin: 0 0 20px;
-  }
-  .about-content p {
-    font-size: 16px;
-    color: #475569;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-  .about-stats {
-    display: flex;
-    gap: 40px;
-    margin-top: 32px;
-  }
+  .about-badge span { font-family: "Playfair Display", serif; font-size: 18px; font-weight: 600; color: #c7913e; }
+  .about-badge small { font-size: 12px; color: #cbd5e1; }
+  .about-content h2 { font-size: 34px; color: #18213d; margin: 0 0 20px; }
+  .about-content p { font-size: 15.5px; color: #475569; line-height: 1.7; margin-bottom: 16px; }
+  .about-stats { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
   .stat-num {
     display: block;
     font-family: "Playfair Display", serif;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: #c7913e;
   }
-  .stat-lbl {
-    font-size: 13px;
-    color: #64748b;
-  }
+  .stat-lbl { font-size: 13px; color: #64748b; }
 
-  /* Insights Section */
-  .insights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
+  /* Insights */
+  .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+  .insight-card { background: #ffffff; border: 1px solid #dedbd1; border-radius: 8px; padding: 30px; }
+  .insight-date { font-size: 11px; letter-spacing: 1.5px; color: #c7913e; font-weight: 700; }
+  .insight-card h3 { font-size: 21px; color: #18213d; margin: 10px 0 12px; }
+  .insight-card p { font-size: 14.5px; color: #475569; margin-bottom: 20px; }
+  .insight-link { font-size: 14px; font-weight: 700; color: #c7913e; }
+
+  /* Floating Mobile Booking Bar */
+  .floating-mobile-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #101936;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 16px;
+    display: none;
+    gap: 12px;
+    z-index: 99;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
   }
-  .insight-card {
-    background: #ffffff;
-    border: 1px solid #dedbd1;
-    border-radius: 8px;
-    padding: 30px;
-  }
-  .insight-date {
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    color: #c7913e;
-    font-weight: 700;
-  }
-  .insight-card h3 {
-    font-size: 22px;
-    color: #18213d;
-    margin: 10px 0 12px;
-  }
-  .insight-card p {
-    font-size: 15px;
-    color: #475569;
-    margin-bottom: 20px;
-  }
-  .insight-link {
+  .f-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
     font-size: 14px;
     font-weight: 700;
-    color: #c7913e;
+    text-decoration: none;
   }
-
-  /* Contact Section */
-  .contact-section {
-    background: #101936;
-    color: #ffffff;
-    text-align: center;
-  }
-  .contact-box h2 {
-    font-size: 38px;
-    color: #ffffff;
-    margin: 0 0 16px;
-  }
-  .contact-box p {
-    font-size: 18px;
-    color: #cbd5e1;
-    margin-bottom: 32px;
-  }
-  .btn-lg {
-    padding: 16px 36px;
-    font-size: 18px;
-  }
-  .contact-note {
-    font-size: 13px !important;
-    color: #94a3b8 !important;
-    margin-top: 24px !important;
-  }
+  .f-book-btn { background: #c7913e; color: #101936; }
+  .f-wa-btn { background: #25d366; color: #ffffff; }
 
   /* Footer */
   .site-footer {
@@ -640,9 +571,11 @@ import { site } from '../data/site';
   .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding-bottom: 36px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+    gap: 32px;
   }
   .footer-title {
     font-family: "Playfair Display", serif;
@@ -652,40 +585,20 @@ import { site } from '../data/site';
     display: block;
     margin-bottom: 6px;
   }
-  .footer-links {
-    display: flex;
-    gap: 24px;
-  }
-  .footer-links a {
-    color: #cbd5e1;
-    font-size: 14px;
-  }
-  .footer-links a:hover {
-    color: #c7913e;
-  }
-  .footer-bottom {
-    padding-top: 24px;
-    font-size: 13px;
-    text-align: center;
-  }
+  .footer-loc { font-size: 13px; color: #cbd5e1; margin-top: 8px; }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { color: #cbd5e1; font-size: 14px; }
+  .footer-links a:hover { color: #c7913e; }
+  .footer-bottom { padding-top: 24px; font-size: 12px; text-align: center; color: #64748b; }
 
-  /* Responsive Design */
+  /* Responsive */
   @media (max-width: 900px) {
-    .hero-container {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-    .hero-lead {
-      margin: 0 auto 36px;
-    }
-    .hero-cta-group {
-      justify-content: center;
-    }
-    .about-grid {
-      grid-template-columns: 1fr;
-    }
-    .nav-links {
-      display: none;
-    }
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-lead { margin: 0 auto 32px; }
+    .hero-cta-group, .hero-badges-row { justify-content: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .floating-mobile-bar { display: flex; }
+    body { padding-bottom: 65px; }
   }
 </style>
