@@ -3,6 +3,18 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview" },
-  "dependencies": { "astro": "^5.16.0" }
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "preview:wrangler": "wrangler pages dev dist",
+    "deploy": "astro build && wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "astro": "^5.16.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.0"
+  }
 }
+
