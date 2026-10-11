@@ -33,6 +33,13 @@ import ConsultationForm from '../components/ConsultationForm.astro';
     </div>
   </header>
 
+  <div class="consultation-strip" role="status">
+    <div class="wrap consultation-strip-inner">
+      <span><strong>Now accepting online consultations</strong> · 15 minutes of personal guidance for {site.pricing.quickCall}</span>
+      <a href="#book">Choose your consultation →</a>
+    </div>
+  </div>
+
   <main>
     <!-- Hero Section -->
     <section id="home" class="hero-section">
@@ -242,6 +249,22 @@ import ConsultationForm from '../components/ConsultationForm.astro';
     align-items: center;
     justify-content: space-between;
   }
+  .consultation-strip {
+    background: #f5ead4;
+    border-bottom: 1px solid #e2c793;
+    color: #493116;
+    font-size: 13px;
+  }
+  .consultation-strip-inner {
+    min-height: 42px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .consultation-strip strong { color: #6d4211; }
+  .consultation-strip a { color: #8a5514; font-weight: 800; white-space: nowrap; }
+  .consultation-strip a:hover { text-decoration: underline; }
   .brand {
     display: flex;
     align-items: center;
@@ -600,5 +623,9 @@ import ConsultationForm from '../components/ConsultationForm.astro';
     .nav-links { display: none; }
     .floating-mobile-bar { display: flex; }
     body { padding-bottom: 65px; }
+    .consultation-strip-inner { min-height: 48px; font-size: 12px; }
+  }
+  @media (max-width: 560px) {
+    .consultation-strip-inner { flex-direction: column; justify-content: center; gap: 2px; padding: 7px 0; text-align: center; }
   }
 </style>
